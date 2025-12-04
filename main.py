@@ -25,6 +25,7 @@ def get_question(environment: Environment) -> tuple[str, str, tuple[str]]:
             question: str = fact[0]
             answer_predicate_name: str = fact[1]
             possible_answers = fact[2:]
+            fact.retract()
             assert isinstance(question, str) and isinstance(answer_predicate_name, str) and isinstance(
                 possible_answers, tuple)
             return question, answer_predicate_name, possible_answers
