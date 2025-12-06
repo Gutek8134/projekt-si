@@ -316,3 +316,81 @@
 (retract ?p)
 (assert (odpowiedz "Frankenstein"))
 )
+
+(defrule boi-sie-obu-naraz
+(not (odpowiedz $?))
+(not (pytanie ? "christopher-lee" $?))
+(not (christopher-lee $?))
+(boi-sie "Obu naraz")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Christopher lee to..." "christopher-lee" "Ten typek co grał Hrabie Dooku" "Legenda"))
+)
+
+(defrule christopher-lee-to-legenda
+(not (odpowiedz $?))
+(not (pytanie ? "opinia-hipisi" $?))
+(not (opinia-hipisi $?))
+(christopher-lee "Legenda")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Czy lubisz hipisów?" "opinia-hipisi" "Nie" "Prawdziwy koszmar to 19. wieczna dziewica"))
+)
+
+(defrule opinia-hipisi-nie-lubi
+(not (odpowiedz $?))
+(opinia-hipisi "Nie")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Dracula A.D. 1972"))
+)
+
+(defrule opinia-hipisi-dziewica
+(not (odpowiedz $?))
+(opinia-hipisi "Prawdziwy koszmar to 19. wieczna dziewica")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "The horror of Dracula"))
+)
+
+(defrule christopher-lee-to-dooku
+(not (odpowiedz $?))
+(not (pytanie ? "opinia-wampiry" $?))
+(not (opinia-wampiry $?))
+(christopher-lee "Ten typek co grał Hrabie Dooku")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Wolę jak wampiry są..." "opinia-wampiry" "Ciche" "Wschodnio Europejskie" "Z olbrzymią fryzurą jak ul"))
+)
+
+(defrule opinia-wampiry-ciche
+(not (odpowiedz $?))
+(opinia-wampiry "Ciche")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Nosferatu"))
+)
+
+(defrule opinia-wampiry-wschodnio-europejskie
+(not (odpowiedz $?))
+(opinia-wampiry "Wschodnio Europejskie")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Dracula (1931)"))
+)
+
+(defrule opinia-wampiry-fryzura-jak-ul
+(not (odpowiedz $?))
+(opinia-wampiry "Z olbrzymią fryzurą jak ul")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Dracula (1992)"))
+)
