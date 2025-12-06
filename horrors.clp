@@ -394,3 +394,72 @@
 (retract ?p)
 (assert (odpowiedz "Dracula (1992)"))
 )
+
+(defrule boi-sie-zmarlych
+(not (odpowiedz $?))
+(not (pytanie ? "opinia-ciala" $?))
+(not (opinia-ciala $?))
+(boi-sie "Zmarłych")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Obchodzi cie czy mają ciała?" "opinia-ciala" "Tak. Ciała definiują jak zjedzą twój mózg" "Bez ciał jest straszniej"))
+)
+
+(defrule opinia-ciala-tak
+(not (odpowiedz $?))
+(not (pytanie ? "psy-patrzec" $?))
+(not (psy-patrzec $?))
+(opinia-ciala "Tak. Ciała definiują jak zjedzą twój mózg")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Czy psy mogą spoglądać w górę?" "psy-patrzec" "Tak." "Skąd temat psów? Pójdźmy po prostu do galerii"))
+)
+
+(defrule psy-moga-patrzec-w-gore
+(not (odpowiedz $?))
+(psy-patrzec "Tak.")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Shaun of the Dead"))
+)
+
+(defrule skad-temat-psow
+(not (odpowiedz $?))
+(psy-patrzec "Skąd temat psów? Pójdźmy po prostu do galerii")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Dawn of the Dead"))
+)
+
+(defrule opinia-ciala-nie
+(not (odpowiedz $?))
+(not (pytanie ? "goerge-c" $?))
+(not (goerge-c $?))
+(opinia-ciala "Bez ciał jest straszniej")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Czy Goerge C. mógłby cię obronić?" "goerge-c" "Tak" "Nie"))
+)
+
+(defrule goerge-c-nie-obronilby
+(not (odpowiedz $?))
+(goerge-c "Nie")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Poltergeist"))
+)
+
+(defrule goerge-c-obronilby
+(not (odpowiedz $?))
+(goerge-c "Tak")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "The Changeling"))
+)
