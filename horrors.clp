@@ -532,3 +532,61 @@
 (retract ?p)
 (assert (odpowiedz "The Exorcist"))
 )
+
+(defrule boi-sie-pelzajacych
+(not (odpowiedz $?))
+(not (pytanie ? "ile-nog" $?))
+(not (ile-nog $?))
+(boi-sie "Pełzających")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Ile nóg przeraża cię najbardziej?" "ile-nog" "Osiem" "Sześć" "Inna liczba"))
+)
+
+(defrule inna-liczba-nog
+(not (odpowiedz $?))
+(ile-nog "Inna liczba")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "The Human Centipide"))
+)
+
+(defrule szesc-nog
+(not (odpowiedz $?))
+(ile-nog "Sześć")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Them!"))
+)
+
+(defrule osiem-nog
+(not (odpowiedz $?))
+(not (pytanie ? "kto-gra-w-filmie" $?))
+(not (kto-gra-w-filmie $?))
+(ile-nog "Osiem")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Wolisz gdy w filmie grają?" "kto-gra-w-filmie" "Obsada Star Treka" "Obsada Roseanne"))
+)
+
+(defrule gra-obsada-star-treka
+(not (odpowiedz $?))
+(kto-gra-w-filmie "Obsada Star Treka")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Kingdom of the Spiders"))
+)
+
+(defrule gra-obsada-roseanne
+(not (odpowiedz $?))
+(kto-gra-w-filmie "Obsada Roseanne")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Arachnophobia"))
+)
