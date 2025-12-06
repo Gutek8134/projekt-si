@@ -463,3 +463,72 @@
 (retract ?p)
 (assert (odpowiedz "The Changeling"))
 )
+
+(defrule boi-sie-diabla
+(not (odpowiedz $?))
+(not (pytanie ? "opinia-dzieci" $?))
+(not (opinia-dzieci $?))
+(boi-sie "Diabła")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Czy lubisz dzieci?" "opinia-dzieci" "Nie" "Kocham te małe robaczki"))
+)
+
+(defrule opinia-dzieci-nie
+(not (odpowiedz $?))
+(opinia-dzieci "Nie")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Häxan"))
+)
+
+(defrule kocha-dzieci
+(not (odpowiedz $?))
+(not (pytanie ? "dlaczego-kochasz-dzieci" $?))
+(not (dlaczego-kochasz-dzieci $?))
+(opinia-dzieci "Kocham te małe robaczki")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Kiedy szczególnie kochasz dzieci?" "dlaczego-kochasz-dzieci" "Kiedy są malutkie" "Kiedy są w podstawówce"))
+)
+
+(defrule kocha-male-dzieci
+(not (odpowiedz $?))
+(dlaczego-kochasz-dzieci "Kiedy są malutkie")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Rosemary's baby"))
+)
+
+(defrule kocha-dzieci-w-podstawowce
+(not (odpowiedz $?))
+(not (pytanie ? "grochowka" $?))
+(not (grochowka $?))
+(dlaczego-kochasz-dzieci "Kiedy są w podstawówce")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Czy chcesz jeszcze kiedyś zjeść grochówkę?" "grochowka" "Tak, kocham grochówkę" "A kogo to obchodzi?"))
+)
+
+(defrule kocha-grochowke
+(not (odpowiedz $?))
+(grochowka "Tak, kocham grochówkę")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "The Omen"))
+)
+
+(defrule kogo-obchodzi-grochowka
+(not (odpowiedz $?))
+(grochowka "A kogo to obchodzi?")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "The Exorcist"))
+)
