@@ -408,18 +408,18 @@
 
 (defrule opinia-ciala-tak
 (not (odpowiedz $?))
-(not (pytanie ? "psy-patrzec" $?))
-(not (psy-patrzec $?))
+(not (pytanie ? "czy-psy-patrza-w-gore" $?))
+(not (czy-psy-patrza-w-gore $?))
 (opinia-ciala "Tak. Ciała definiują jak zjedzą twój mózg")
 ?p <- (pytanie $?)
 =>
 (retract ?p)
-(assert (pytanie "Czy psy mogą spoglądać w górę?" "psy-patrzec" "Tak." "Skąd temat psów? Pójdźmy po prostu do galerii"))
+(assert (pytanie "Czy psy mogą spoglądać w górę?" "czy-psy-patrza-w-gore" "Tak." "Skąd temat psów? Pójdźmy po prostu do galerii"))
 )
 
 (defrule psy-moga-patrzec-w-gore
 (not (odpowiedz $?))
-(psy-patrzec "Tak.")
+(czy-psy-patrza-w-gore "Tak.")
 ?p <- (pytanie $?)
 =>
 (retract ?p)
@@ -428,7 +428,7 @@
 
 (defrule skad-temat-psow
 (not (odpowiedz $?))
-(psy-patrzec "Skąd temat psów? Pójdźmy po prostu do galerii")
+(czy-psy-patrza-w-gore "Skąd temat psów? Pójdźmy po prostu do galerii")
 ?p <- (pytanie $?)
 =>
 (retract ?p)
@@ -437,18 +437,18 @@
 
 (defrule opinia-ciala-nie
 (not (odpowiedz $?))
-(not (pytanie ? "goerge-c" $?))
-(not (goerge-c $?))
+(not (pytanie ? "czy-obronilby-goerge-c" $?))
+(not (czy-obronilby-goerge-c $?))
 (opinia-ciala "Bez ciał jest straszniej")
 ?p <- (pytanie $?)
 =>
 (retract ?p)
-(assert (pytanie "Czy Goerge C. mógłby cię obronić?" "goerge-c" "Tak" "Nie"))
+(assert (pytanie "Czy Goerge C. mógłby cię obronić?" "czy-obronilby-goerge-c" "Tak" "Nie"))
 )
 
 (defrule goerge-c-nie-obronilby
 (not (odpowiedz $?))
-(goerge-c "Nie")
+(czy-obronilby-goerge-c "Nie")
 ?p <- (pytanie $?)
 =>
 (retract ?p)
@@ -457,7 +457,7 @@
 
 (defrule goerge-c-obronilby
 (not (odpowiedz $?))
-(goerge-c "Tak")
+(czy-obronilby-goerge-c "Tak")
 ?p <- (pytanie $?)
 =>
 (retract ?p)
@@ -506,18 +506,18 @@
 
 (defrule kocha-dzieci-w-podstawowce
 (not (odpowiedz $?))
-(not (pytanie ? "grochowka" $?))
-(not (grochowka $?))
+(not (pytanie ? "opinia-grochowka" $?))
+(not (opinia-grochowka $?))
 (dlaczego-kochasz-dzieci "Kiedy są w podstawówce")
 ?p <- (pytanie $?)
 =>
 (retract ?p)
-(assert (pytanie "Czy chcesz jeszcze kiedyś zjeść grochówkę?" "grochowka" "Tak, kocham grochówkę" "A kogo to obchodzi?"))
+(assert (pytanie "Czy chcesz jeszcze kiedyś zjeść grochówkę?" "opinia-grochowka" "Tak, kocham grochówkę" "A kogo to obchodzi?"))
 )
 
 (defrule kocha-grochowke
 (not (odpowiedz $?))
-(grochowka "Tak, kocham grochówkę")
+(opinia-grochowka "Tak, kocham grochówkę")
 ?p <- (pytanie $?)
 =>
 (retract ?p)
@@ -526,7 +526,7 @@
 
 (defrule kogo-obchodzi-grochowka
 (not (odpowiedz $?))
-(grochowka "A kogo to obchodzi?")
+(opinia-grochowka "A kogo to obchodzi?")
 ?p <- (pytanie $?)
 =>
 (retract ?p)
@@ -535,18 +535,18 @@
 
 (defrule boi-sie-pelzajacych
 (not (odpowiedz $?))
-(not (pytanie ? "ile-nog" $?))
-(not (ile-nog $?))
+(not (pytanie ? "ile-nog-sie-boisz" $?))
+(not (ile-nog-sie-boisz $?))
 (boi-sie "Pełzających")
 ?p <- (pytanie $?)
 =>
 (retract ?p)
-(assert (pytanie "Ile nóg przeraża cię najbardziej?" "ile-nog" "Osiem" "Sześć" "Inna liczba"))
+(assert (pytanie "Ile nóg przeraża cię najbardziej?" "ile-nog-sie-boisz" "Osiem" "Sześć" "Inna liczba"))
 )
 
 (defrule inna-liczba-nog
 (not (odpowiedz $?))
-(ile-nog "Inna liczba")
+(ile-nog-sie-boisz "Inna liczba")
 ?p <- (pytanie $?)
 =>
 (retract ?p)
@@ -555,7 +555,7 @@
 
 (defrule szesc-nog
 (not (odpowiedz $?))
-(ile-nog "Sześć")
+(ile-nog-sie-boisz "Sześć")
 ?p <- (pytanie $?)
 =>
 (retract ?p)
@@ -566,7 +566,7 @@
 (not (odpowiedz $?))
 (not (pytanie ? "kto-gra-w-filmie" $?))
 (not (kto-gra-w-filmie $?))
-(ile-nog "Osiem")
+(ile-nog-sie-boisz "Osiem")
 ?p <- (pytanie $?)
 =>
 (retract ?p)
