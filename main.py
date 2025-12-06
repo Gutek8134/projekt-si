@@ -8,8 +8,10 @@ RULES_FILE = "horrors.clp"
 
 
 def get_answer(environment: Environment) -> str:
+    print("getting answer")
     fact: ImpliedFact
     for fact in environment._facts.facts():
+        # print(fact)
         if fact.template.name == "odpowiedz":
             value = fact[0]
             assert isinstance(value, str)
@@ -19,13 +21,14 @@ def get_answer(environment: Environment) -> str:
 
 
 def get_question(environment: Environment) -> tuple[str, str, tuple[str]]:
+    print("getting question")
     fact: ImpliedFact
     for fact in environment._facts.facts():
+        # print(fact)
         if fact.template.name == "pytanie":
             question: str = fact[0]
             answer_predicate_name: str = fact[1]
             possible_answers = fact[2:]
-            fact.retract()
             assert isinstance(question, str) and isinstance(answer_predicate_name, str) and isinstance(
                 possible_answers, tuple)
             return question, answer_predicate_name, possible_answers
@@ -50,9 +53,15 @@ def set_up_gui(root: tk.Tk) -> tuple[tk.Label, tk.Frame, tk.Button]:
 def assert_and_reason(environment: Environment, answer_predicate_name: str, user_answer: tk.StringVar, reasoning_finished_event: threading.Event) -> None:
     # print(f"({answer_predicate_name} \"{user_answer.get()}\")")
 
+    # print("asserting")
     environment._facts.assert_string(
         f"({answer_predicate_name} \"{user_answer.get()}\")")
+    # print("reasoning")
+    # while environment._agenda.run(1):
+    #     for activation in environment._agenda.activations():
+    #         print(activation)
     environment._agenda.run()
+    # print("finished")
     reasoning_finished_event.set()
 
 
@@ -74,7 +83,7 @@ def reasoning(root: tk.Tk,
             environment)
 
         # Ask question
-        question_label.config(text=question)
+        question_label.config(text=question.replace("\\n", "\n"))
 
         # Delete old answers
         for child in answers_frame.children.copy().values():
@@ -97,8 +106,10 @@ def reasoning(root: tk.Tk,
     submit_button.destroy()
 
     system_answer_label = tk.Label(
-        root, text=f"Powinieneś/Powinnaś obejrzeć\n{system_answer}", font=("Arial", 24, "bold"))
+        root, text=f"Powinieneś/Powinnaś/Powinnoś obejrzeć\n{system_answer}", font=("Arial", 16, "bold"))
     system_answer_label.pack(fill="both", expand=True)
+    environment.clear()
+    del environment
 
 
 def main() -> None:
