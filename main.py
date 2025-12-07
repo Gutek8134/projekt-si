@@ -1,6 +1,6 @@
 from clips import Environment
 from clips.facts import ImpliedFact
-import tkinter as tk
+import mttkinter.mtTkinter as tk
 import threading
 from functools import partial
 
