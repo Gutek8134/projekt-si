@@ -316,3 +316,277 @@
 (retract ?p)
 (assert (odpowiedz "Frankenstein"))
 )
+
+(defrule boi-sie-obu-naraz
+(not (odpowiedz $?))
+(not (pytanie ? "christopher-lee" $?))
+(not (christopher-lee $?))
+(boi-sie "Obu naraz")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Christopher lee to..." "christopher-lee" "Ten typek co grał Hrabie Dooku" "Legenda"))
+)
+
+(defrule christopher-lee-to-legenda
+(not (odpowiedz $?))
+(not (pytanie ? "opinia-hipisi" $?))
+(not (opinia-hipisi $?))
+(christopher-lee "Legenda")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Czy lubisz hipisów?" "opinia-hipisi" "Nie" "Prawdziwy koszmar to 19. wieczna dziewica"))
+)
+
+(defrule opinia-hipisi-nie-lubi
+(not (odpowiedz $?))
+(opinia-hipisi "Nie")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Dracula A.D. 1972"))
+)
+
+(defrule opinia-hipisi-dziewica
+(not (odpowiedz $?))
+(opinia-hipisi "Prawdziwy koszmar to 19. wieczna dziewica")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "The horror of Dracula"))
+)
+
+(defrule christopher-lee-to-dooku
+(not (odpowiedz $?))
+(not (pytanie ? "opinia-wampiry" $?))
+(not (opinia-wampiry $?))
+(christopher-lee "Ten typek co grał Hrabie Dooku")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Wolę jak wampiry są..." "opinia-wampiry" "Ciche" "Wschodnio Europejskie" "Z olbrzymią fryzurą jak ul"))
+)
+
+(defrule opinia-wampiry-ciche
+(not (odpowiedz $?))
+(opinia-wampiry "Ciche")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Nosferatu"))
+)
+
+(defrule opinia-wampiry-wschodnio-europejskie
+(not (odpowiedz $?))
+(opinia-wampiry "Wschodnio Europejskie")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Dracula (1931)"))
+)
+
+(defrule opinia-wampiry-fryzura-jak-ul
+(not (odpowiedz $?))
+(opinia-wampiry "Z olbrzymią fryzurą jak ul")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Dracula (1992)"))
+)
+
+(defrule boi-sie-zmarlych
+(not (odpowiedz $?))
+(not (pytanie ? "opinia-ciala" $?))
+(not (opinia-ciala $?))
+(boi-sie "Zmarłych")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Obchodzi cie czy mają ciała?" "opinia-ciala" "Tak. Ciała definiują jak zjedzą twój mózg" "Bez ciał jest straszniej"))
+)
+
+(defrule opinia-ciala-tak
+(not (odpowiedz $?))
+(not (pytanie ? "czy-psy-patrza-w-gore" $?))
+(not (czy-psy-patrza-w-gore $?))
+(opinia-ciala "Tak. Ciała definiują jak zjedzą twój mózg")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Czy psy mogą spoglądać w górę?" "czy-psy-patrza-w-gore" "Tak." "Skąd temat psów? Pójdźmy po prostu do galerii"))
+)
+
+(defrule psy-moga-patrzec-w-gore
+(not (odpowiedz $?))
+(czy-psy-patrza-w-gore "Tak.")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Shaun of the Dead"))
+)
+
+(defrule skad-temat-psow
+(not (odpowiedz $?))
+(czy-psy-patrza-w-gore "Skąd temat psów? Pójdźmy po prostu do galerii")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Dawn of the Dead"))
+)
+
+(defrule opinia-ciala-nie
+(not (odpowiedz $?))
+(not (pytanie ? "czy-obronilby-goerge-c" $?))
+(not (czy-obronilby-goerge-c $?))
+(opinia-ciala "Bez ciał jest straszniej")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Czy Goerge C. mógłby cię obronić?" "czy-obronilby-goerge-c" "Tak" "Nie"))
+)
+
+(defrule goerge-c-nie-obronilby
+(not (odpowiedz $?))
+(czy-obronilby-goerge-c "Nie")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Poltergeist"))
+)
+
+(defrule goerge-c-obronilby
+(not (odpowiedz $?))
+(czy-obronilby-goerge-c "Tak")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "The Changeling"))
+)
+
+(defrule boi-sie-diabla
+(not (odpowiedz $?))
+(not (pytanie ? "opinia-dzieci" $?))
+(not (opinia-dzieci $?))
+(boi-sie "Diabła")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Czy lubisz dzieci?" "opinia-dzieci" "Nie" "Kocham te małe robaczki"))
+)
+
+(defrule opinia-dzieci-nie
+(not (odpowiedz $?))
+(opinia-dzieci "Nie")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Häxan"))
+)
+
+(defrule kocha-dzieci
+(not (odpowiedz $?))
+(not (pytanie ? "dlaczego-kochasz-dzieci" $?))
+(not (dlaczego-kochasz-dzieci $?))
+(opinia-dzieci "Kocham te małe robaczki")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Kiedy szczególnie kochasz dzieci?" "dlaczego-kochasz-dzieci" "Kiedy są malutkie" "Kiedy są w podstawówce"))
+)
+
+(defrule kocha-male-dzieci
+(not (odpowiedz $?))
+(dlaczego-kochasz-dzieci "Kiedy są malutkie")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Rosemary's baby"))
+)
+
+(defrule kocha-dzieci-w-podstawowce
+(not (odpowiedz $?))
+(not (pytanie ? "opinia-grochowka" $?))
+(not (opinia-grochowka $?))
+(dlaczego-kochasz-dzieci "Kiedy są w podstawówce")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Czy chcesz jeszcze kiedyś zjeść grochówkę?" "opinia-grochowka" "Tak, kocham grochówkę" "A kogo to obchodzi?"))
+)
+
+(defrule kocha-grochowke
+(not (odpowiedz $?))
+(opinia-grochowka "Tak, kocham grochówkę")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "The Omen"))
+)
+
+(defrule kogo-obchodzi-grochowka
+(not (odpowiedz $?))
+(opinia-grochowka "A kogo to obchodzi?")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "The Exorcist"))
+)
+
+(defrule boi-sie-pelzajacych
+(not (odpowiedz $?))
+(not (pytanie ? "ile-nog-sie-boisz" $?))
+(not (ile-nog-sie-boisz $?))
+(boi-sie "Pełzających")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Ile nóg przeraża cię najbardziej?" "ile-nog-sie-boisz" "Osiem" "Sześć" "Inna liczba"))
+)
+
+(defrule inna-liczba-nog
+(not (odpowiedz $?))
+(ile-nog-sie-boisz "Inna liczba")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "The Human Centipide"))
+)
+
+(defrule szesc-nog
+(not (odpowiedz $?))
+(ile-nog-sie-boisz "Sześć")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Them!"))
+)
+
+(defrule osiem-nog
+(not (odpowiedz $?))
+(not (pytanie ? "kto-gra-w-filmie" $?))
+(not (kto-gra-w-filmie $?))
+(ile-nog-sie-boisz "Osiem")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (pytanie "Wolisz gdy w filmie grają?" "kto-gra-w-filmie" "Obsada Star Treka" "Obsada Roseanne"))
+)
+
+(defrule gra-obsada-star-treka
+(not (odpowiedz $?))
+(kto-gra-w-filmie "Obsada Star Treka")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Kingdom of the Spiders"))
+)
+
+(defrule gra-obsada-roseanne
+(not (odpowiedz $?))
+(kto-gra-w-filmie "Obsada Roseanne")
+?p <- (pytanie $?)
+=>
+(retract ?p)
+(assert (odpowiedz "Arachnophobia"))
+)
