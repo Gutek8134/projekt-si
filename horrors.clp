@@ -10,6 +10,7 @@
 ?p <- (pytanie $?)
 =>
 (retract ?p)
+; Struktura faktu pytanie: Treść pytania, typ faktu dla odpowiedzi użytkownika, lista możliwych odpowiedzi
 (assert (pytanie "Jesteś kobietą czy mężczyzną?\\nJeśli jesteś osobą niebinarną, wybierz płeć, która jest ci bliższa." "plec" "Kobieta" "Mężczyzna"))
 )
 
