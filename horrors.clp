@@ -282,7 +282,7 @@
 
 (defrule tak-boi-sie-owadow
 (not (odpowiedz $?))
-(boi-sie-owadów "Tak")
+(boi-sie-owadow "Tak")
 ?p <- (pytanie $?)
 =>
 (retract ?p)
@@ -293,7 +293,7 @@
 (not (odpowiedz $?))
 (not (pytanie ? "opinia-odciete-glowy" $?))
 (not (opinia-odciete-glowy $?))
-(boi-sie-owadów "Nie")
+(boi-sie-owadow "Nie")
 ?p <- (pytanie $?)
 =>
 (retract ?p)
